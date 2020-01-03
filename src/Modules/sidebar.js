@@ -10,26 +10,17 @@ const sidebar = () => {
     }
 
     sideElements.sideTitle.textContent = 'Your Lists';
-    sideElements.addProject.textContent = 'Add Project';
+    sideElements.addProject.textContent = 'Add a New List';
 
     for (let element in sideElements) {
         sideElements[element].setAttribute('class', `${element}`);
         sidebar.appendChild(sideElements[element]);
     }
 
-    const renderList = () => {
-        let total = controller().ProjectArray.length;
-        for (let list in controller().ProjectArray) {
-            let div = document.createElement('div');
-            div.textContent = controller().ProjectArray[list].title;
-            sideElements.projectList.appendChild(div);
-        }
-    }
-
-    renderList();
-    addListForm();
+    controller().renderList();
 
     sideElements.addProject.addEventListener('click', function() {
+        controller().clearDiv(document.querySelector('.mainContent'));
         addListForm().appendForm();
     });
 }

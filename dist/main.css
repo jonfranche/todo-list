@@ -37,3 +37,7 @@ header h1 {
     flex-direction: column;
     grid-column: 2 / 3;
 }
+
+.list:hover {
+    opacity: 0.5;
+}

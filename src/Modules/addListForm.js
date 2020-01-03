@@ -1,3 +1,6 @@
+import {controller} from "./controller";
+import {listArray} from "./listArray";
+
 const addListForm = () => {
     const mainContent = document.querySelector('.mainContent');
     const contentElements = {
@@ -24,6 +27,21 @@ const addListForm = () => {
             mainContent.appendChild(contentElements[element]);
         }
     }
+
+    contentElements.cancel.addEventListener('click', function() {
+        controller().clearDiv(mainContent);
+    });
+
+    contentElements.submit.addEventListener('click', function() {
+        let listTitle = contentElements.titleInput.value;
+        let listDesc = contentElements.descInput.value;
+        controller().addProject(listTitle, listDesc);
+        controller().clearDiv(document.querySelector('.projectList'));
+        controller().renderList();
+        console.log(listArray.length);
+        console.log(listArray[listArray.length - 1]);
+        controller().clearDiv(mainContent);
+    });
 
     return {
         appendForm

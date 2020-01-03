@@ -1,5 +1,7 @@
 import {Project} from './Project';
 import {Todo} from './Todo';
+import {listArray} from './listArray';
+import {listContent} from './listContent';
 
 const controller = () => {
     const addTodo = (project, title, description, dueDate, priority) => {
@@ -8,24 +10,39 @@ const controller = () => {
         project.todos.push(todo);
     }
 
-    const addProject = (arr, title, description) => {
-        let id = arr.length;
+    const addProject = (title, description) => {
+        let id = listArray.length;
         let project = Project(title, description, id);
-        arr.push(project);
+        listArray.push(project);
     }
 
-    const ProjectArray = [];
-    addProject(ProjectArray, 'General', 'Project description here');
-    addProject(ProjectArray, 'List 2', 'description 2');
+    const clearDiv = (div) => {
+        while(div.firstChild) {
+            div.removeChild(div.firstChild);
+        }
+    }
 
-    addTodo(ProjectArray[0], 'Task 1', 'description 1', 'January 1, 2020', 3);
-    addTodo(ProjectArray[0], 'Task 2', 'description 2', 'February 1, 2020', 2);
-    addTodo(ProjectArray[0], 'Task 3', 'description 3', 'March 1, 2020', 1);
+    const renderList = () => {
+        for (let list in listArray) {
+            let div = document.createElement('div');
+            div.setAttribute('class', 'list');
+            div.setAttribute('id', `list${listArray[list].id}`);
+            document.querySelector('.projectList').appendChild(div);
+            div.appendChild(document.createElement('span'));
+            div.appendChild(document.createElement('button'));
+            div.querySelector('span').textContent = `${listArray[list].title}`;
+            div.addEventListener('click', function() {
+                listContent(listArray[list].id);
+            });
+        }
+    }
+    
 
     return {
         addTodo,
         addProject,
-        ProjectArray,
+        clearDiv,
+        renderList
     }
 }
 

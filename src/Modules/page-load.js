@@ -1,4 +1,4 @@
-import {controller} from './controller';
+//import {controller} from './controller';
 import {sidebar} from './sidebar';
 
 const pageLoad = () => {
@@ -52,8 +52,6 @@ const pageLoad = () => {
             `Project description ${projectCount}`);
         console.log('Project Added');
     });*/
-
-    controller();
 
     const body = document.querySelector('body');
     const bodyElements = {
