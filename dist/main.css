@@ -1,0 +1,39 @@
+html {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    color: white;
+    height: 50px;
+    width: 100%;
+    background-color: #2e2ee6;
+}
+
+header h1 {
+    margin: 0px 10px;
+}
+
+.main {
+    height: 100vh;
+    max-width: 800px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 2fr;
+}
+
+.sidebar {
+    height: 100%;
+    width: 100%;
+    grid-column: 1 / 2;
+    background-color: #b2b2b3;
+}
+
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    grid-column: 2 / 3;
+}
