@@ -28,10 +28,16 @@ const controller = () => {
             div.setAttribute('class', 'list');
             div.setAttribute('id', `list${listArray[list].id}`);
             document.querySelector('.projectList').appendChild(div);
-            div.appendChild(document.createElement('span'));
-            div.appendChild(document.createElement('button'));
-            div.querySelector('span').textContent = `${listArray[list].title}`;
-            div.addEventListener('click', function() {
+            const divElements = {
+                title: document.createElement('span'),
+                todosCount: document.createElement('span'),
+            }
+            for (let element in divElements) {
+                div.appendChild(divElements[element])
+            }
+            divElements.title.textContent = `${listArray[list].title}`;
+            divElements.todosCount.textContent = `${listArray[list].todos.length}`;
+            divElements.title.addEventListener('click', function() {
                 listContent(listArray[list].id);
             });
         }

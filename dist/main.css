@@ -26,18 +26,29 @@ header h1 {
 }
 
 .sidebar {
-    height: 100%;
-    width: 100%;
+    padding: 0 20px 0 20px;
     grid-column: 1 / 2;
     background-color: #b2b2b3;
 }
 
 .mainContent {
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     grid-column: 2 / 3;
 }
 
-.list:hover {
-    opacity: 0.5;
+.list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.list span{
+    opacity: 0.85;
+}
+
+.list span:hover {
+    opacity: 1;
+    font-weight: 700;
 }
