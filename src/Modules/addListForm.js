@@ -13,7 +13,7 @@ const addListForm = () => {
         cancel: document.createElement('button'),
     }
 
-    contentElements.h2.textContent = 'Add New a List';
+    contentElements.h2.textContent = 'Add a New List';
     contentElements.title.textContent = 'List Title: ';
     contentElements.desc.textContent = 'List Description: ';
     contentElements.submit.textContent = 'Submit';
@@ -34,6 +34,12 @@ const addListForm = () => {
 
     contentElements.submit.addEventListener('click', function() {
         let listTitle = contentElements.titleInput.value;
+
+        if (listTitle === '') {
+            alert('Please add a title, or press cancel');
+            return 0;
+        }
+
         let listDesc = contentElements.descInput.value;
         controller().addProject(listTitle, listDesc);
         controller().clearDiv(document.querySelector('.projectList'));

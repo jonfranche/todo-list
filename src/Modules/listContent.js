@@ -1,7 +1,9 @@
 import {listArray} from "./listArray";
 import {controller} from "./controller";
+import {todoContent} from "./todoContent";
 
 const listContent = (list) => {
+    let todoArr = listArray[list].todos;
     const mainContent = document.querySelector('.mainContent');
     controller().clearDiv(mainContent);
     const listElements = {
@@ -19,7 +21,19 @@ const listContent = (list) => {
         listElements[element].setAttribute('class', `${element}`);
     }
 
-    
+    const renderTodos = () => {
+        for (let activeTodo in todoArr) {
+            let div = document.createElement('div');
+            listElements.todoList.appendChild(div);
+            todoContent(div, list, activeTodo);
+        }
+    }
+
+    renderTodos();
+
+    listElements.addTodo.addEventListener('click', function() {
+        
+    });
 }
 
 export {listContent};
