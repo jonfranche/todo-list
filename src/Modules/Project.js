@@ -1,9 +1,8 @@
-const Project = (title, description, id = 0) => {
+const Project = (title, description) => {
     return {
         title,
         description,
-        todos: [],
-        id
+        todos: []
     }
 }
 

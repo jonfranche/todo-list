@@ -3,7 +3,7 @@ import {controller} from "./controller";
 
 const todoContent = (div, list, activeTodo) => {
     const todoElements = {
-        checkbox: document.createElement('input'),
+        //checkbox: document.createElement('input'),
         title: document.createElement('span'),
         description: document.createElement('span'),
         date: document.createElement('span'),
