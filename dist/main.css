@@ -17,6 +17,10 @@ header h1 {
     margin: 0px 10px;
 }
 
+textarea {
+    resize: none;
+}
+
 .main {
     height: 100vh;
     max-width: 800px;
