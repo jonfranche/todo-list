@@ -21,6 +21,29 @@ textarea {
     resize: none;
 }
 
+i {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+
+.left {
+    transform: rotate(135deg);
+}
+
+.right {
+    transform: rotate(-45deg);
+}
+
+.up {
+    transform: rotate(-135deg);
+}
+
+.down {
+    transform: rotate(45deg);
+}
+
 .main {
     height: 100vh;
     max-width: 800px;
@@ -42,6 +65,10 @@ textarea {
     grid-column: 2 / 3;
 }
 
+.todo {
+    border-bottom: 1px solid gray;
+}
+
 .list {
     display: flex;
     flex-direction: row;
@@ -60,4 +87,27 @@ textarea {
 .todoForm {
     display: flex;
     flex-direction: column;
+}
+
+.hidden {
+    display: none;
+}
+
+.todo {
+    opacity: 0.85;
+}
+
+.todo:hover {
+    opacity: 1;
+}
+
+p.todoDesc {
+    font-size: 12px;
+}
+
+.todoInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
 }

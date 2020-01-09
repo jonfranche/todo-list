@@ -16,16 +16,16 @@ const addTodoForm = (div, list) => {
         dueDate: document.createElement('span'),
         dateInput: document.createElement('input'),
         prio: document.createElement('span'),
-        prioInput: document.createElement('input'),
+        prioInput: document.createElement('select'),
         submit: document.createElement('button'),
         cancel: document.createElement('button'),
     }
 
     formElements.h4.textContent = 'Add a New Todo:';
     formElements.title.textContent = 'Title:';
-    formElements.desc.textContent = 'Description:';
+    formElements.desc.textContent = 'Description (optional):';
     formElements.dueDate.textContent = 'Due Date (optional):';
-    formElements.prio.textContent = 'Priority: 1, 2, 3';
+    formElements.prio.textContent = 'Priority:';
     formElements.submit.textContent = 'Submit';
     formElements.cancel.textContent = 'Cancel';
     formElements.dateInput.setAttribute('type', 'date')
@@ -33,6 +33,19 @@ const addTodoForm = (div, list) => {
     
     for (let element in formElements) {
         todoForm.appendChild(formElements[element]);
+    }
+
+    const prioChoices = {
+        None: document.createElement('option'),
+        Low: document.createElement('option'),
+        Medium: document.createElement('option'),
+        High: document.createElement('option')
+    }
+
+    for (let element in prioChoices) {
+        formElements.prioInput.appendChild(prioChoices[element]);
+        prioChoices[element].textContent = `${element}`;
+        prioChoices[element].setAttribute('value', `${element}`);
     }
 
     formElements.submit.addEventListener('click', function() {
