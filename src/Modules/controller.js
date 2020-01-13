@@ -23,8 +23,11 @@ const controller = () => {
         listArray.splice(listArray.indexOf(listArray[list]), 1);
     }
 
-    const editTodo = () => {
-
+    const editTodo = (list, activeTodo, title, description, dueDate, priority) => {
+        listArray[list].todos[activeTodo].title = title;
+        listArray[list].todos[activeTodo].description = description;
+        listArray[list].todos[activeTodo].dueDate = dueDate;
+        listArray[list].todos[activeTodo].priority = priority;
     }
 
     const clearDiv = (div) => {

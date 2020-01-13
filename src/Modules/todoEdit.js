@@ -26,6 +26,10 @@ const todoEdit = (div, activeList, activeTodo) => {
     editElements.dateInput.setAttribute('type', 'date');
     editElements.buttons.style.display = 'flex';
     editElements.buttons.style.flexDirection = 'row';
+    editElements.titleInput.value = listArray[activeList].todos[activeTodo].title;
+    editElements.descInput.value = listArray[activeList].todos[activeTodo].description;
+    editElements.dateInput.value = listArray[activeList].todos[activeTodo].dueDate;
+    editElements.prioInput.value = listArray[activeList].todos[activeTodo].priority;
 
     for (let element in editElements) {
         editDiv.appendChild(editElements[element]);
@@ -57,6 +61,22 @@ const todoEdit = (div, activeList, activeTodo) => {
     buttonElements.cancel.addEventListener('click', function() {
         div.removeChild(div.lastChild);
         div.querySelector('.edit').style.display = 'initial';
+    });
+
+    buttonElements.submit.addEventListener('click', function() {
+        if (editElements.title.value === '') {
+            alert('A title is required');
+        } else {
+            let title = editElements.titleInput.value;
+            let desc = editElements.descInput.value;
+            let date = editElements.dateInput.value;
+            let prio = editElements.prioInput.value;
+            controller().editTodo(activeList, activeTodo, title, desc, date, prio);
+            div.removeChild(div.lastChild);
+            div.querySelector('.edit').style.display = 'initial';
+            controller().clearDiv(document.querySelector('.todoList'));
+            controller().renderTodos(activeList);
+        }
     });
 }
 
