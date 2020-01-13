@@ -22,6 +22,8 @@ textarea {
 }
 
 i {
+    max-height: 1px;
+    max-width: 1px;
     border: solid black;
     border-width: 0 3px 3px 0;
     display: inline-block;
@@ -67,6 +69,8 @@ i {
 
 .todo {
     border-bottom: 1px solid gray;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
 }
 
 .list {
@@ -93,14 +97,6 @@ i {
     display: none;
 }
 
-.todo {
-    opacity: 0.85;
-}
-
-.todo:hover {
-    opacity: 1;
-}
-
 p.todoDesc {
     font-size: 12px;
 }
@@ -110,4 +106,58 @@ p.todoDesc {
     flex-direction: row;
     justify-content: space-between;
     font-size: 14px;
+}
+
+.todoDiv2 {
+    display: flex;
+    flex-direction: row;
+}
+
+.todoDiv3:hover {
+    background-color: #ccefff;
+}
+
+.todoDiv3 {
+    padding: 0px 4px;
+    border: 0px;
+    border-radius: 8px;
+    font-weight: 700;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+}
+
+.todoDiv3 span{
+    grid-column: 1 / 2;
+}
+
+.todoDiv3 i{
+    grid-column: 2 / 3;
+    justify-self: center;
+    align-self: center;
+}
+
+.delete {
+    border-radius: 5px;
+    font-weight: 400;
+    width: 100px;
+    height: 18px;
+    margin: 2px;
+    background-color: #ff6060;
+    border: 1px solid #f00;
+}
+
+.delete:hover {
+    font-weight: 700;
+    border: 2px solid #f00;
+}
+
+.todoButtons {
+    display: flex;
+    flex-direction: row;
+}
+
+.editDiv {
+    display: flex;
+    flex-direction: column;
 }

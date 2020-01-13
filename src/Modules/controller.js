@@ -2,6 +2,7 @@ import {Project} from './Project';
 import {Todo} from './Todo';
 import {listArray} from './listArray';
 import {listContent} from './listContent';
+import {todoContent} from './todoContent';
 
 const controller = () => {
     const addTodo = (project, title, description, dueDate, priority) => {
@@ -14,8 +15,16 @@ const controller = () => {
         listArray.push(project);
     }
 
+    const deleteTodo = (list, activeTodo) => {
+        listArray[list].todos.splice(listArray[list].todos.indexOf(listArray[list].todos[activeTodo]), 1);
+    }
+
     const deleteProject = (list) => {
         listArray.splice(listArray.indexOf(listArray[list]), 1);
+    }
+
+    const editTodo = () => {
+
     }
 
     const clearDiv = (div) => {
@@ -38,7 +47,12 @@ const controller = () => {
             for (let element in divElements) {
                 div.appendChild(divElements[element])
             }
-            divElements.title.textContent = `${listArray[list].title}`;
+
+            if (listArray[list].title.length > 20) {
+                divElements.title.textContent = `${listArray[list].title.slice(0, 16)}...`;
+            } else {
+                divElements.title.textContent = `${listArray[list].title}`;
+            }
             divElements.todosCount.textContent = `${listArray[list].todos.length}`;
             divElements.title.addEventListener('click', function() {
                 listContent(listArray.indexOf(listArray[list]));
@@ -46,12 +60,22 @@ const controller = () => {
         }
     }
     
+    const renderTodos = (activeList) => {
+        for (let activeTodo in listArray[activeList].todos) {
+            let div = document.createElement('div');
+            document.querySelector('.todoList').appendChild(div);
+            todoContent(div, activeList, activeTodo);
+        }
+    }
 
     return {
         addTodo,
         addProject,
+        deleteTodo,
         deleteProject,
+        editTodo,
         clearDiv,
+        renderTodos,
         renderList
     }
 }

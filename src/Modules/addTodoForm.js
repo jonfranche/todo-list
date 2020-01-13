@@ -49,14 +49,20 @@ const addTodoForm = (div, list) => {
     }
 
     formElements.submit.addEventListener('click', function() {
-        controller().addTodo(
-            listArray[listID], 
-            formElements.titleInput.value,
-            formElements.descInput.value,
-            formElements.dateInput.value,
-            formElements.prioInput.value)
-        listContent(listID);
-        controller().renderList();
+        if (formElements.titleInput.value.length > 50) {
+            alert('The title is too long. It must be 50 characters or less');
+        } else if (formElements.titleInput.value === '') {
+            alert('The title cannot be empty');
+        } else {
+            controller().addTodo(
+                listArray[listID], 
+                formElements.titleInput.value,
+                formElements.descInput.value,
+                formElements.dateInput.value,
+                formElements.prioInput.value)
+            listContent(listID);
+            controller().renderList();
+        }
     });
 
     formElements.cancel.addEventListener('click', function() {

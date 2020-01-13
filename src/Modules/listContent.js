@@ -4,7 +4,6 @@ import {todoContent} from "./todoContent";
 import {addTodoForm} from "./addTodoForm";
 
 const listContent = (list) => {
-    let todoArr = listArray[list].todos;
     const mainContent = document.querySelector('.mainContent');
     controller().clearDiv(mainContent);
     const listElements = {
@@ -16,7 +15,7 @@ const listContent = (list) => {
     }
 
     listElements.title.textContent = listArray[list].title;
-    listElements.delete.textContent = 'Delete this List';
+    listElements.delete.textContent = 'Delete List';
     listElements.description.textContent = listArray[list].description;
     listElements.addTodo.textContent = 'Add a New Todo';
     for (let element in listElements) {
@@ -24,15 +23,7 @@ const listContent = (list) => {
         listElements[element].setAttribute('class', `${element}`);
     }
 
-    const renderTodos = () => {
-        for (let activeTodo in todoArr) {
-            let div = document.createElement('div');
-            listElements.todoList.appendChild(div);
-            todoContent(div, list, activeTodo);
-        }
-    }
-
-    renderTodos();
+    controller().renderTodos(list);
 
     listElements.delete.addEventListener('click', function() {
         if (window.confirm("To confirm deleting this List, Press \"OK\"")){
@@ -46,6 +37,7 @@ const listContent = (list) => {
         mainContent.removeChild(mainContent.lastChild);
         addTodoForm(mainContent, list);
     });
+
 }
 
 export {listContent};

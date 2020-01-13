@@ -8,18 +8,17 @@ const addListForm = () => {
         title: document.createElement('h3'),
         titleInput: document.createElement('input'),
         desc: document.createElement('h3'),
-        descInput: document.createElement('input'),
+        descInput: document.createElement('textarea'),
         submit: document.createElement('button'),
         cancel: document.createElement('button'),
     }
 
     contentElements.h2.textContent = 'Add a New List';
     contentElements.title.textContent = 'List Title: ';
-    contentElements.desc.textContent = 'List Description: ';
+    contentElements.desc.textContent = 'List Description (Optional): ';
     contentElements.submit.textContent = 'Submit';
     contentElements.cancel.textContent = 'Cancel';
     contentElements.titleInput.setAttribute('type', 'text');
-    contentElements.descInput.setAttribute('type', 'text');
 
     const appendForm = () => {
         for (let element in contentElements) {
@@ -44,8 +43,6 @@ const addListForm = () => {
         controller().addProject(listTitle, listDesc);
         controller().clearDiv(document.querySelector('.projectList'));
         controller().renderList();
-        console.log(listArray.length);
-        console.log(listArray[listArray.length - 1]);
         controller().clearDiv(mainContent);
     });
 

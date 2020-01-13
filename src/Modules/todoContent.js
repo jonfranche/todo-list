@@ -1,55 +1,78 @@
 import {listArray} from "./listArray";
 import {controller} from "./controller";
+import {todoEdit} from "./todoEdit";
 
 const todoContent = (div, list, activeTodo) => {
+    const appendElements = (parentDiv, elements) => {
+        for (let element in elements) {
+            parentDiv.appendChild(elements[element]);
+        }
+    }
+
     let todoIndex = listArray[list].todos.indexOf(listArray[list].todos[activeTodo]);
 
+    const div2 = document.createElement('div');
     const checkbox = document.createElement('input');
+    const div3 = document.createElement('div');
+    const info = document.createElement('div');
     const title = document.createElement('span');
     const arrow = document.createElement('i');
 
     const todoElements = {
-        info: document.createElement('div'),
         description: document.createElement('p'),
-        edit: document.createElement('button'),
-        delete: document.createElement('button'),
+        buttons: document.createElement('div')
     }
 
     const date = document.createElement('span');
     const priority = document.createElement('span');
 
     div.setAttribute('class', 'todo');
-    div.appendChild(checkbox);
-    div.appendChild(title);
-    div.appendChild(arrow);
+    div.appendChild(div2);
+    div2.setAttribute('class', 'todoDiv2');
+    div2.appendChild(checkbox);
+    div2.appendChild(div3);
+    div3.setAttribute('class', 'todoDiv3');
+    div3.appendChild(title);
+    div3.appendChild(arrow);
 
-    title.textContent = listArray[list].todos[activeTodo].title;
+    // If the title of the Todo is too long, shorten it
+    if (listArray[list].todos[activeTodo].title.length > 25) {
+        title.textContent = `${listArray[list].todos[activeTodo].title.slice(0, 25)}...`;
+    } else {
+        title.textContent = listArray[list].todos[activeTodo].title;
+    }
+
     checkbox.setAttribute('type', 'checkbox');
-    arrow.setAttribute('class', 'down');
+    arrow.setAttribute('class', 'right');
+
+    const buttonElements = {
+        edit: document.createElement('button'),
+        delete: document.createElement('button'),
+    }
 
     todoElements.description.setAttribute('class', 'todoDesc');
     todoElements.description.textContent = listArray[list].todos[activeTodo].description;
-    
-    todoElements.edit.textContent = 'Edit';
-    todoElements.delete.textContent = 'Delete this Todo';
+    todoElements.buttons.setAttribute('class', 'todoButtons');
+    buttonElements.edit.textContent = 'Edit';
+    buttonElements.delete.textContent = 'Delete Todo';
+    buttonElements.delete.setAttribute('class', 'delete');
 
     let dropdown = document.createElement('div');
-    //dropdown.setAttribute('class', 'hidden');
+    dropdown.setAttribute('class', 'hidden');
     dropdown.setAttribute('id', `todo${todoIndex}`);
+    div.appendChild(info);
     div.appendChild(dropdown);
 
-    for (let element in todoElements){
-        dropdown.appendChild(todoElements[element]);
-    }
-
-    todoElements.info.setAttribute('class', 'todoInfo');
-
-    todoElements.info.appendChild(date);
-    todoElements.info.appendChild(priority);
+    appendElements(dropdown, todoElements);
+    appendElements(todoElements.buttons, buttonElements);
+    
+    info.setAttribute('class', 'todoInfo');
+    info.appendChild(date);
+    info.appendChild(priority);
 
     switch(listArray[list].todos[activeTodo].priority) {
-        case 'Low':
-            priority.setAttribute('style', 'color: #ffe033');
+        case 'None':
+            priority.setAttribute('style', 'color: #999');
             break;
         case 'Medium':
             priority.setAttribute('style', 'color: #ff8f33');
@@ -64,7 +87,7 @@ const todoContent = (div, list, activeTodo) => {
     date.textContent = `Due: ${listArray[list].todos[activeTodo].dueDate}`;
     priority.textContent = `Priority: ${listArray[list].todos[activeTodo].priority}`;
 
-    title.addEventListener('click', function() {
+    div3.addEventListener('click', function() {
         let x = document.getElementById(`todo${todoIndex}`);
         if (window.getComputedStyle(x).display === 'none') {
             x.removeAttribute('class', 'hidden');
@@ -75,6 +98,18 @@ const todoContent = (div, list, activeTodo) => {
             arrow.removeAttribute('class', 'down');
             arrow.setAttribute('class', 'right');
         }
+    });
+
+    buttonElements.delete.addEventListener('click', function() {
+        controller().deleteTodo(list, activeTodo);
+        controller().clearDiv(document.querySelector('.todoList'));
+        controller().renderTodos(list);
+        controller().renderList();
+    });
+
+    buttonElements.edit.addEventListener('click', function() {
+        let activeDiv = document.querySelector(`#todo${todoIndex}`); 
+        todoEdit(activeDiv, list, activeTodo);
     });
 }
 
