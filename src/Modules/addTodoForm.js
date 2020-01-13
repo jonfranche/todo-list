@@ -49,8 +49,8 @@ const addTodoForm = (div, list) => {
     }
 
     formElements.submit.addEventListener('click', function() {
-        if (formElements.titleInput.value.length > 50) {
-            alert('The title is too long. It must be 50 characters or less');
+        if (formElements.titleInput.value.length > 100) {
+            alert('The title is too long. It must be 100 characters or less');
         } else if (formElements.titleInput.value === '') {
             alert('The title cannot be empty');
         } else {

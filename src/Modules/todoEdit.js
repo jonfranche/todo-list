@@ -51,12 +51,13 @@ const todoEdit = (div, activeList, activeTodo) => {
 
     for (let element in buttonElements) {
         editElements.buttons.appendChild(buttonElements[element]);
-        buttonElements[element].textContent = `${buttonElements[element]}`;
+        buttonElements[element].textContent = `${element}`;
     }
 
-    /*buttonElements.submit.addEventListener('click', function() {
-        
-    });*/
+    buttonElements.cancel.addEventListener('click', function() {
+        div.removeChild(div.lastChild);
+        div.querySelector('.edit').style.display = 'initial';
+    });
 }
 
 export {todoEdit};

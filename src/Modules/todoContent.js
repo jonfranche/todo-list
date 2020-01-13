@@ -19,6 +19,7 @@ const todoContent = (div, list, activeTodo) => {
     const arrow = document.createElement('i');
 
     const todoElements = {
+        fullTitle: document.createElement('span'),
         description: document.createElement('p'),
         buttons: document.createElement('div')
     }
@@ -36,8 +37,8 @@ const todoContent = (div, list, activeTodo) => {
     div3.appendChild(arrow);
 
     // If the title of the Todo is too long, shorten it
-    if (listArray[list].todos[activeTodo].title.length > 25) {
-        title.textContent = `${listArray[list].todos[activeTodo].title.slice(0, 25)}...`;
+    if (listArray[list].todos[activeTodo].title.length > 40) {
+        title.textContent = `${listArray[list].todos[activeTodo].title.slice(0, 40)}...`;
     } else {
         title.textContent = listArray[list].todos[activeTodo].title;
     }
@@ -50,10 +51,13 @@ const todoContent = (div, list, activeTodo) => {
         delete: document.createElement('button'),
     }
 
+    todoElements.fullTitle.setAttribute('class', 'fullTitle');
+    todoElements.fullTitle.textContent = listArray[list].todos[activeTodo].title;
     todoElements.description.setAttribute('class', 'todoDesc');
     todoElements.description.textContent = listArray[list].todos[activeTodo].description;
     todoElements.buttons.setAttribute('class', 'todoButtons');
     buttonElements.edit.textContent = 'Edit';
+    buttonElements.edit.setAttribute('class', 'edit');
     buttonElements.delete.textContent = 'Delete Todo';
     buttonElements.delete.setAttribute('class', 'delete');
 
@@ -107,10 +111,14 @@ const todoContent = (div, list, activeTodo) => {
         controller().renderList();
     });
 
-    buttonElements.edit.addEventListener('click', function() {
-        let activeDiv = document.querySelector(`#todo${todoIndex}`); 
+    const editEvent = () => {
+        let activeDiv = document.querySelector(`#todo${todoIndex}`);
         todoEdit(activeDiv, list, activeTodo);
-    });
+        activeDiv.querySelector('.edit').style.display = 'none';
+    }
+
+    buttonElements.edit.addEventListener('click', editEvent, false);
+
 }
 
 export {todoContent};

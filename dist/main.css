@@ -30,6 +30,11 @@ i {
     padding: 3px;
 }
 
+.fullTitle {
+    margin: 8px 0px;
+    font-weight: 700;
+}
+
 .left {
     transform: rotate(135deg);
 }
@@ -98,6 +103,7 @@ i {
 }
 
 p.todoDesc {
+    margin: 0px 0px 10px 0px;
     font-size: 12px;
 }
 
