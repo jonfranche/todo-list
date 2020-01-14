@@ -53,6 +53,9 @@ const todoEdit = (div, activeList, activeTodo) => {
         cancel: document.createElement('button')
     }
 
+    buttonElements.submit.setAttribute('class', 'edit');
+    buttonElements.cancel.setAttribute('class', 'delete');
+
     for (let element in buttonElements) {
         editElements.buttons.appendChild(buttonElements[element]);
         buttonElements[element].textContent = `${element}`;

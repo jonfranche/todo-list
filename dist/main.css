@@ -61,10 +61,11 @@ i {
 }
 
 .sidebar {
+    color: #fff;
     padding: 0 20px 0 20px;
     grid-column: 1 / 2;
-    background-color: #fff;
-    box-shadow: 3px 0px 3px grey;
+    background-color: #73affd;
+    box-shadow: 3px 1px 6px grey;
 }
 
 .mainContent {
@@ -93,7 +94,7 @@ i {
 
 .list:hover {
     font-weight: 700;
-    background-color: #ccefff;
+    background-color: #2e2ee6;
     box-shadow: 0 0 3px black;
 }
 
@@ -149,11 +150,10 @@ p.todoDesc {
     align-self: center;
 }
 
-.delete {
+.delete, .cancel {
     opacity: 0.85;
     color: #000;
     border-radius: 5px;
-    font-weight: 400;
     width: 110px;
     height: 25px;
     margin: 2px;
@@ -161,9 +161,9 @@ p.todoDesc {
     border: 1px solid #f00;
 }
 
-.delete:hover {
+.delete:hover, .cancel:hover{
     opacity: 1;
-    box-shadow: 0 0 2px 2px gray;
+    box-shadow: 0 0 1px 2px gray;
 }
 
 .todoButtons {
@@ -186,6 +186,55 @@ p.todoDesc {
     align-self: center;
 }
 
-@media screen and (max-width: 700px) {
+.addProject, .addTodo {
+    width: 150px;
+    height: 25px;
+    font-size: 13px;
+    border: solid 0px #73affd;
+    border-radius: 5px;
+    background: #2e2ee6;
+    color: #fff;
+    margin-bottom: 10px;
+    padding: 0;
+    align-self: center;
+}
 
+.addProject:hover, .addTodo:hover {
+    box-shadow: 0 0 1px 2px gray;
+}
+
+.edit, .submit{
+    color: #fff;
+    border-radius: 5px;
+    width: 110px;
+    height: 25px;
+    margin: 2px;
+    background-color: #2e2ee6;
+    border: 0px solid #2e2ee6;
+}
+
+.edit:hover, .submit:hover {
+    box-shadow: 0 0 1px 2px gray;
+}
+
+.editForm {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 700px) {
+    .main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .projectList, .addProject {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 701px) {
+    .projectList, .addProject {
+        display: block;
+    }
 }

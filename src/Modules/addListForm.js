@@ -1,5 +1,4 @@
 import {controller} from "./controller";
-import {listArray} from "./listArray";
 
 const addListForm = () => {
     const mainContent = document.querySelector('.mainContent');

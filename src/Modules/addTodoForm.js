@@ -28,6 +28,8 @@ const addTodoForm = (div, list) => {
     formElements.prio.textContent = 'Priority:';
     formElements.submit.textContent = 'Submit';
     formElements.cancel.textContent = 'Cancel';
+    formElements.submit.setAttribute('class', 'edit');
+    formElements.cancel.setAttribute('class', 'delete');
     formElements.dateInput.setAttribute('type', 'date')
 
     
