@@ -16,6 +16,7 @@ header {
 }
 
 header h1 {
+    font-weight: 900;
     justify-self: center;
     align-self: center;
     margin: 0px 10px;
