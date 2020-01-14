@@ -71,12 +71,40 @@ const editList = (list) => {
     }
 
     editElements.title.textContent = 'Title';
+    editElements.titleInput.value = listArray[list].title;
     editElements.desc.textContent = 'Description';
+    editElements.descInput.value = listArray[list].description;
 
     for (let element in editElements) {
         editForm.appendChild(editElements[element]);
     }
 
+    const buttonElements = {
+        submit: document.createElement('button'),
+        cancel: document.createElement('button'),
+    }
+
+    buttonElements.submit.textContent = 'Submit';
+    buttonElements.cancel.textContent = 'Cancel';
+
+    for (let element in buttonElements) {
+        editElements.buttons.appendChild(buttonElements[element]);
+        buttonElements[element].setAttribute('class', `${element}`);
+    }
+
+    buttonElements.submit.addEventListener('click', function() {
+        let title = editElements.titleInput.value;
+        let description = editElements.descInput.value;
+        controller().editProject(list, title, description);
+        mainContent.querySelector('.edit').style.display = 'block';
+        listContent(list);
+        controller().renderList();
+    });
+
+    buttonElements.cancel.addEventListener('click', function() {
+        mainContent.removeChild(editForm);
+        mainContent.querySelector('.edit').style.display = 'block';
+    });
 }
 
 export {listContent};

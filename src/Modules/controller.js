@@ -30,6 +30,11 @@ const controller = () => {
         listArray[list].todos[activeTodo].priority = priority;
     }
 
+    const editProject = (list, title, description) => {
+        listArray[list].title = title;
+        listArray[list].description = description;
+    }
+
     const clearDiv = (div) => {
         while(div.firstChild) {
             div.removeChild(div.firstChild);
@@ -77,6 +82,7 @@ const controller = () => {
         deleteTodo,
         deleteProject,
         editTodo,
+        editProject,
         clearDiv,
         renderTodos,
         renderList
