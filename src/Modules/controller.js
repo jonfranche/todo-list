@@ -57,7 +57,7 @@ const controller = () => {
                 divElements.title.textContent = `${listArray[list].title}`;
             }
             divElements.todosCount.textContent = `${listArray[list].todos.length}`;
-            divElements.title.addEventListener('click', function() {
+            div.addEventListener('click', function() {
                 listContent(listArray.indexOf(listArray[list]));
             });
         }

@@ -4,12 +4,11 @@ import {controller} from './controller';
 const sidebar = () => {
     const sidebar = document.querySelector('.sidebar');
     const sideElements = {
-        sideTitle: document.createElement('h2'),
+        titleDiv: document.createElement('div'),
         projectList: document.createElement('div'),
         addProject: document.createElement('button'),
     }
 
-    sideElements.sideTitle.textContent = 'Your Lists';
     sideElements.addProject.textContent = 'Add a New List';
 
     for (let element in sideElements) {
@@ -17,6 +16,13 @@ const sidebar = () => {
         sidebar.appendChild(sideElements[element]);
     }
 
+    const sideTitle = document.createElement('h2');
+    const arrow = document.createElement('i');
+    sideTitle.textContent = 'Your Lists';
+
+    sideElements.titleDiv.appendChild(sideTitle);
+    sideElements.titleDiv.appendChild(arrow);
+    arrow.setAttribute('class', 'left');
     controller().renderList();
 
     sideElements.addProject.addEventListener('click', function() {

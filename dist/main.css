@@ -63,7 +63,8 @@ i {
 .sidebar {
     padding: 0 20px 0 20px;
     grid-column: 1 / 2;
-    background-color: #b2b2b3;
+    background-color: #fff;
+    box-shadow: 3px 0px 3px grey;
 }
 
 .mainContent {
@@ -83,12 +84,17 @@ i {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border: solid 0px black;
+    border-radius: 5px;
+    padding: 0 2px;
+    margin-bottom: 5px;
 }
 
 
 .list:hover {
     font-weight: 700;
-    background-color: #fff;
+    background-color: #ccefff;
+    box-shadow: 0 0 3px black;
 }
 
 .todoForm {
@@ -110,6 +116,7 @@ p.todoDesc {
     flex-direction: row;
     justify-content: space-between;
     font-size: 14px;
+    margin:5px 5px;
 }
 
 .todoDiv2 {
@@ -119,6 +126,7 @@ p.todoDesc {
 
 .todoDiv3:hover {
     background-color: #ccefff;
+    box-shadow: 0 0 3px black;
 }
 
 .todoDiv3 {
@@ -155,7 +163,7 @@ p.todoDesc {
 
 .delete:hover {
     opacity: 1;
-    border: 2px solid #f00;
+    box-shadow: 0 0 2px 2px gray;
 }
 
 .todoButtons {
@@ -166,6 +174,16 @@ p.todoDesc {
 .editDiv {
     display: flex;
     flex-direction: column;
+}
+
+.titleDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.titleDiv i{
+    align-self: center;
 }
 
 @media screen and (max-width: 700px) {
