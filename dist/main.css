@@ -242,6 +242,7 @@ p.todoDesc {
 }
 
 .completed {
+    font-size: 11px;
     opacity: 0.85;
     color: #fff;
     border-radius: 5px;
