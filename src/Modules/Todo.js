@@ -1,9 +1,10 @@
-const Todo = (title, description, dueDate, priority = 1) => {
+const Todo = (title, description, dueDate, priority, completed = false) => {
     return {
         title, 
         description,
         dueDate, 
-        priority
+        priority,
+        completed
     }
 };
 

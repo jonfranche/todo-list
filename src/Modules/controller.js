@@ -5,6 +5,7 @@ import {listContent} from './listContent';
 import {todoContent} from './todoContent';
 
 const controller = () => {
+
     const addTodo = (project, title, description, dueDate, priority) => {
         let todo = Todo(title, description, dueDate, priority);
         project.todos.push(todo);
@@ -61,19 +62,38 @@ const controller = () => {
             } else {
                 divElements.title.textContent = `${listArray[list].title}`;
             }
-            divElements.todosCount.textContent = `${listArray[list].todos.length}`;
+            divElements.todosCount.textContent = `${countIncomplete(list)}`;
             div.addEventListener('click', function() {
                 listContent(listArray.indexOf(listArray[list]));
             });
         }
     }
+
+    const countIncomplete = (list) => {
+        let count = 0;
+        for (let x in listArray[list].todos) {
+            (listArray[list].todos[x].completed) ? count + 0 : count++;
+        }
+
+        return count;
+    }
     
     const renderTodos = (activeList) => {
         for (let activeTodo in listArray[activeList].todos) {
-            let div = document.createElement('div');
-            document.querySelector('.todoList').appendChild(div);
-            todoContent(div, activeList, activeTodo);
+            if (listArray[activeList].todos[activeTodo].completed && defaultSettings.showCompleted === false) {
+                continue;
+            } else {
+                let div = document.createElement('div');
+                document.querySelector('.todoList').appendChild(div);
+                todoContent(div, activeList, activeTodo);
+            }
         }
+    }
+
+    function changeCompleted(activeList, activeTodo) {
+        (listArray[activeList].todos[activeTodo].completed) ?
+            listArray[activeList].todos[activeTodo].completed = false : 
+            listArray[activeList].todos[activeTodo].completed = true;
     }
 
     return {
@@ -85,8 +105,17 @@ const controller = () => {
         editProject,
         clearDiv,
         renderTodos,
-        renderList
+        renderList,
+        changeCompleted
     }
 }
 
-export {controller};
+const Settings = (showCompleted = false) => {
+    return {
+        showCompleted
+    }
+}
+
+const defaultSettings = Settings();
+
+export {controller, defaultSettings};

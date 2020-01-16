@@ -3,9 +3,12 @@ import {controller} from './Modules/controller';
 import {listArray} from './Modules/listArray';
 
 controller();
+
 pageLoad();
 
 controller().addTodo(listArray[0], 'Test todo 1', 'This is a test todo', 'January 15, 2020', 'High');
 controller().addTodo(listArray[0], 'Test todo 2', 'This is a test todo', 'January 16, 2020', 'Medium');
+
+listArray[0].todos[0].completed = true;
 
 controller().renderList();

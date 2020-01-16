@@ -1,5 +1,5 @@
 import {listArray} from "./listArray";
-import {controller} from "./controller";
+import {controller, defaultSettings} from "./controller";
 import {todoEdit} from "./todoEdit";
 
 const todoContent = (div, list, activeTodo) => {
@@ -44,11 +44,16 @@ const todoContent = (div, list, activeTodo) => {
     }
 
     checkbox.setAttribute('type', 'checkbox');
+    //checkbox.setAttribute('value', 'true');
     arrow.setAttribute('class', 'right');
 
     const buttonElements = {
         edit: document.createElement('button'),
         delete: document.createElement('button'),
+    }
+
+    if (listArray[list].todos[activeTodo].completed) {
+        checkbox.checked = true;
     }
 
     todoElements.fullTitle.setAttribute('class', 'fullTitle');
@@ -109,6 +114,19 @@ const todoContent = (div, list, activeTodo) => {
         controller().clearDiv(document.querySelector('.todoList'));
         controller().renderTodos(list);
         controller().renderList();
+    });
+
+    checkbox.addEventListener('click', function() {
+        controller().changeCompleted(list, activeTodo);
+        window.setTimeout(function() {
+            if (defaultSettings.showCompleted){
+                return 0;
+            } else {
+                controller().clearDiv(document.querySelector('.todoList'));
+                controller().renderTodos(list);
+                controller().renderList();
+            }
+        }, 5*1000)
     });
 
     const editEvent = () => {

@@ -1,8 +1,12 @@
 import {listArray} from "./listArray";
-import {controller} from "./controller";
+import {controller, defaultSettings} from "./controller";
 import {addTodoForm} from "./addTodoForm";
 
 const listContent = (list) => {
+    function textCompleted () {
+        return ((defaultSettings.showCompleted) ? 'Hide Completed' : 'Show Completed');
+    }
+
     const mainContent = document.querySelector('.mainContent');
     controller().clearDiv(mainContent);
     const listElements = {
@@ -15,14 +19,18 @@ const listContent = (list) => {
 
     const buttonsElements = {
         edit: document.createElement('button'),
-        delete: document.createElement('button')
+        delete: document.createElement('button'),
+        completed: document.createElement('button')
     }
 
     listElements.title.textContent = listArray[list].title;
     buttonsElements.delete.textContent = 'Delete List';
     buttonsElements.edit.textContent = 'Edit List';
+    buttonsElements.completed.textContent = textCompleted();
     listElements.description.textContent = listArray[list].description;
     listElements.addTodo.textContent = '+ Add a New Todo';
+
+    
 
     for (let element in listElements) {
         mainContent.appendChild(listElements[element]);
@@ -47,7 +55,21 @@ const listContent = (list) => {
     buttonsElements.edit.addEventListener('click', function() {
         editList(list);
         mainContent.querySelector('.edit').style.display = 'none';
-    })
+    });
+
+    buttonsElements.completed.addEventListener('click', function() {
+        if (defaultSettings.showCompleted) {
+            defaultSettings.showCompleted = false;
+            buttonsElements.completed.textContent = 'Show Completed';
+            controller().clearDiv(listElements.todoList);
+            controller().renderTodos(list);
+        } else {
+            defaultSettings.showCompleted = true;
+            buttonsElements.completed.textContent = 'Hide Completed';
+            controller().clearDiv(listElements.todoList);
+            controller().renderTodos(list);
+        }
+    });
 
     listElements.addTodo.addEventListener('click', function() {
         mainContent.removeChild(mainContent.lastChild);
