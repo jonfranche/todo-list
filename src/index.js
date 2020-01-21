@@ -1,6 +1,7 @@
 import {pageLoad} from './Modules/page-load';
 import {controller} from './Modules/controller';
 import {listArray} from './Modules/listArray';
+import {listContent} from './Modules/listContent';
 
 controller();
 
@@ -19,6 +20,11 @@ if (localStorage.length > 0) {
     controller().addTodo(listArray[0], 'Click the \'+ Add New Todo\' to create a new todo', '', '', 'None');
     controller().addTodo(listArray[0], 'Click the orange \'Show Completed\' button on the top', 'This shows todos that you have completed previously.', '', 'Medium');
     controller().addTodo(listArray[0], 'Click the red \'Delete List\' to finish this Tutorial', '', '', 'Low');
+}
+
+// Show the first list on page load
+if (listArray.length > 0) {
+    listContent(0);
 }
 
 controller().renderList();
