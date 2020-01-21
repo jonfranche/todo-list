@@ -8,15 +8,12 @@ const addListForm = () => {
         titleInput: document.createElement('input'),
         desc: document.createElement('h3'),
         descInput: document.createElement('textarea'),
-        submit: document.createElement('button'),
-        cancel: document.createElement('button'),
+        buttons: document.createElement('div')
     }
 
     contentElements.h2.textContent = 'Add a New List';
     contentElements.title.textContent = 'List Title: ';
     contentElements.desc.textContent = 'List Description (Optional): ';
-    contentElements.submit.textContent = 'Submit';
-    contentElements.cancel.textContent = 'Cancel';
     contentElements.titleInput.setAttribute('type', 'text');
 
     const appendForm = () => {
@@ -26,11 +23,24 @@ const addListForm = () => {
         }
     }
 
-    contentElements.cancel.addEventListener('click', function() {
+    const buttonElements = {
+        submit: document.createElement('button'),
+        cancel: document.createElement('button'),
+    }
+
+    for (let element in buttonElements) {
+        buttonElements[element].setAttribute('class', `${element}`);
+        contentElements.buttons.appendChild(buttonElements[element]);
+    }
+
+    buttonElements.submit.textContent = 'Submit';
+    buttonElements.cancel.textContent = 'Cancel';
+
+    buttonElements.cancel.addEventListener('click', function() {
         controller().clearDiv(mainContent);
     });
 
-    contentElements.submit.addEventListener('click', function() {
+    buttonElements.submit.addEventListener('click', function() {
         let listTitle = contentElements.titleInput.value;
 
         if (listTitle === '') {

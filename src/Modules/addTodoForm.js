@@ -17,8 +17,7 @@ const addTodoForm = (div, list) => {
         dateInput: document.createElement('input'),
         prio: document.createElement('span'),
         prioInput: document.createElement('select'),
-        submit: document.createElement('button'),
-        cancel: document.createElement('button'),
+        buttons: document.createElement('div')
     }
 
     formElements.h4.textContent = 'Add a New Todo:';
@@ -26,16 +25,27 @@ const addTodoForm = (div, list) => {
     formElements.desc.textContent = 'Description (optional):';
     formElements.dueDate.textContent = 'Due Date (optional):';
     formElements.prio.textContent = 'Priority:';
-    formElements.submit.textContent = 'Submit';
-    formElements.cancel.textContent = 'Cancel';
-    formElements.submit.setAttribute('class', 'edit');
-    formElements.cancel.setAttribute('class', 'delete');
-    formElements.dateInput.setAttribute('type', 'date')
+    formElements.buttons.setAttribute('class', 'buttons');
+    formElements.dateInput.setAttribute('type', 'date');
 
     
     for (let element in formElements) {
         todoForm.appendChild(formElements[element]);
+        formElements[element].style.marginBottom = '10px';
     }
+
+    const buttonElements = {
+        submit: document.createElement('button'),
+        cancel: document.createElement('button'),
+    }
+
+    for (let element in buttonElements) {
+        formElements.buttons.appendChild(buttonElements[element]);
+        buttonElements[element].setAttribute('class', `${element}`);
+    }
+
+    buttonElements.submit.textContent = 'Submit';
+    buttonElements.cancel.textContent = 'Cancel';
 
     const prioChoices = {
         None: document.createElement('option'),
@@ -50,7 +60,7 @@ const addTodoForm = (div, list) => {
         prioChoices[element].setAttribute('value', `${element}`);
     }
 
-    formElements.submit.addEventListener('click', function() {
+    buttonElements.submit.addEventListener('click', function() {
         if (formElements.titleInput.value.length > 100) {
             alert('The title is too long. It must be 100 characters or less');
         } else if (formElements.titleInput.value === '') {
@@ -67,7 +77,7 @@ const addTodoForm = (div, list) => {
         }
     });
 
-    formElements.cancel.addEventListener('click', function() {
+    buttonElements.cancel.addEventListener('click', function() {
         listContent(listID);
     });
 }

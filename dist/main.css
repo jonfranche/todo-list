@@ -64,7 +64,7 @@ i {
 }
 
 .main {
-    height: 100vh;
+    height: 100vmax;
     max-width: 800px;
     display: grid;
     grid-template-rows: 1fr;
@@ -188,6 +188,7 @@ p.todoDesc {
 .todoButtons, .buttons {
     display: flex;
     flex-direction: row;
+    justify-content: center;
 }
 
 .editDiv {
