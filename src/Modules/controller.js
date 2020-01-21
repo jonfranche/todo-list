@@ -9,19 +9,25 @@ const controller = () => {
     const addTodo = (project, title, description, dueDate, priority) => {
         let todo = Todo(title, description, dueDate, priority);
         project.todos.push(todo);
+        localStorage.removeItem(`list${listArray.indexOf(project)}`);
+        localStorage.setItem(`list${listArray.indexOf(project)}`, JSON.stringify(project));
     }
 
     const addProject = (title, description) => {
         let project = Project(title, description);
         listArray.push(project);
+        localStorage.setItem(`list${listArray.indexOf(project)}`, JSON.stringify(project));
     }
 
     const deleteTodo = (list, activeTodo) => {
         listArray[list].todos.splice(listArray[list].todos.indexOf(listArray[list].todos[activeTodo]), 1);
+        localStorage.removeItem(`list${listArray.indexOf(listArray[list])}`);
+        localStorage.setItem(`list${listArray.indexOf(listArray[list])}`, JSON.stringify(listArray[list]));
     }
 
     const deleteProject = (list) => {
         listArray.splice(listArray.indexOf(listArray[list]), 1);
+        rearrangeStorage();
     }
 
     const editTodo = (list, activeTodo, title, description, dueDate, priority) => {
@@ -29,16 +35,29 @@ const controller = () => {
         listArray[list].todos[activeTodo].description = description;
         listArray[list].todos[activeTodo].dueDate = dueDate;
         listArray[list].todos[activeTodo].priority = priority;
+        localStorage.removeItem(`list${listArray.indexOf(listArray[list])}`);
+        localStorage.setItem(`list${listArray.indexOf(listArray[list])}`, JSON.stringify(listArray[list]));
     }
 
     const editProject = (list, title, description) => {
         listArray[list].title = title;
         listArray[list].description = description;
+        localStorage.removeItem(`list${listArray.indexOf(listArray[list])}`);
+        localStorage.setItem(`list${listArray.indexOf(listArray[list])}`, JSON.stringify(listArray[list]));
     }
 
     const clearDiv = (div) => {
         while(div.firstChild) {
             div.removeChild(div.firstChild);
+        }
+    }
+
+    const rearrangeStorage = () => {
+        localStorage.clear();
+        if (listArray.length > 0) {
+            for (let x = 0; x < listArray.length; x++) {
+                localStorage.setItem(`list${x}`, JSON.stringify(listArray[x]));
+            }
         }
     }
 
