@@ -1,0 +1,2 @@
+This project is a web app that allows the user to make lists of reminders such as a grocery list. They can add, edit, and delete reminders on those lists. Users can also set a due date and a priority for their reminders.
+This web app utilizes the browsers localStorage functionality so that any list the user makes is saved even if they leave the site and it is available when they return.
