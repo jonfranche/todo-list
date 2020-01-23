@@ -1,11 +1,11 @@
 const Todo = (title, description, dueDate, priority, completed = false) => {
     return {
-        title, 
+        title,
         description,
-        dueDate, 
+        dueDate,
         priority,
-        completed
+        completed,
     }
-};
+}
 
-export {Todo}
+export { Todo }

@@ -2,8 +2,8 @@ const Project = (title, description) => {
     return {
         title,
         description,
-        todos: []
+        todos: [],
     }
 }
 
-export {Project}
+export { Project }

@@ -1,5 +1,3 @@
-import {Project} from "./Project";
+const listArray = []
 
-const listArray = [];
-
-export {listArray};
+export { listArray }
